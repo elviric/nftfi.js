@@ -4,7 +4,7 @@
  */
 class Utils {
   #ethers;
-  #web3;
+//  #web3;
   #BN;
   #Date;
   #Math;
@@ -12,7 +12,7 @@ class Utils {
 
   constructor(options = {}) {
     this.#ethers = options?.ethers;
-    this.#web3 = options?.web3;
+//    this.#web3 = options?.web3;
     this.#BN = options?.BN;
     this.#Date = options?.Date;
     this.#Math = options?.Math;

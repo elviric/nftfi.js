@@ -31,7 +31,7 @@ import Safe from '@gnosis.pm/safe-core-sdk';
 import EthersAdapter from '@gnosis.pm/safe-ethers-lib';
 import BN from 'bn.js';
 import { ethers as ethersjs } from 'ethers';
-import web3 from 'web3';
+//import web3 from 'web3';
 import axios from 'axios';
 import merge from 'lodash.merge';
 import set from 'lodash.set';
@@ -134,7 +134,7 @@ export default {
     }
     /////////////////////////////
     const http = new Http({ axios });
-    const utils = options?.dependencies?.utils || new Utils({ ethers, BN, Date, Math, Number, web3 });
+    const utils = options?.dependencies?.utils || new Utils({ ethers, BN, Date, Math, Number });
     const auth = new Auth({ http, account, config, utils });
     const api = options?.dependencies?.api || new Api({ config, auth, http });
     const error = new Error();
