@@ -29,7 +29,8 @@ class Utils {
    * const nonce = nftfi.utils.getNonce();
    */
   getNonce() {
-    const rand = this.#web3.utils.randomHex(32).replace('0x', '');
+    //const rand = this.#web3.utils.randomHex(32).replace('0x', '');
+    const rand = this.#ethers.utils.randomBytes(32);
     const nonce = new this.#BN(rand, 16).toString();
     return nonce;
   }
