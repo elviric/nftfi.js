@@ -74,9 +74,7 @@ export default {
     // }
     console.log(options?.ethereum?.provider?.url);
     const ethers = options?.dependencies?.ethers || ethersjs;
-    const provider = options?.ethereum?.web3?.provider
-      ? new ethersjs.providers.Web3Provider(options?.ethereum?.web3?.provider)
-      : new ethersjs.providers.JsonRpcProvider(options?.ethereum?.provider?.url);
+    const provider = new ethersjs.providers.getDefaultProvider(options?.ethereum?.provider?.url);
     const network = await provider.getNetwork();
     const config = new Config({
       merge,
