@@ -3,8 +3,7 @@
   "version": "0.3.3",
   "main": "./src/nftfi.js",
   "exports": {
-    "import": "./src/nftfi.js",
-    "require": "./cjs/nftfi.cjs"
+    "import": "./src/nftfi.js"
   },
   "type": "module",
   "engines": {
