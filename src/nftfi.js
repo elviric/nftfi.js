@@ -56,7 +56,7 @@ export default {
     if (!hasWeb3Provider && !hasProviderUrl) {
       throw 'Please provide a value for the ethereum.provider.url field in the options parameter.';
     }
-    if (!hasWeb3Provider && !hasGnosisSafePks && !hasAccountPk) {
+    if (!hasWeb3Provider && !hasProviderUrl && !hasGnosisSafePks && !hasAccountPk) {
       throw 'Please provide a value for the ethereum.account.privateKey field in the options parameter.';
     }
     if (!hasApiKey) {
@@ -65,13 +65,13 @@ export default {
     if (!hasGnosisSafeAddress && !hasAccountPk && !hasAccountAddress) {
       throw 'Please provide a value for the ethereum.account.address field in the options parameter.';
     }
-    if (
-      (hasGnosisSafePks && (hasWeb3Provider || hasAccountPk)) ||
-      (hasWeb3Provider && (hasGnosisSafePks || hasAccountPk)) ||
-      (hasAccountPk && (hasGnosisSafePks || hasWeb3Provider))
-    ) {
-      throw 'Please supply values for either account.privateKey, account.web3.provider, or account.multisig.';
-    }
+    // if (
+    //   (hasGnosisSafePks && (hasWeb3Provider || hasAccountPk)) ||
+    //   (hasWeb3Provider && (hasGnosisSafePks || hasAccountPk)) ||
+    //   (hasAccountPk && (hasGnosisSafePks || hasWeb3Provider))
+    // ) {
+    //   throw 'Please supply values for either account.privateKey, account.web3.provider, or account.multisig.';
+    // }
 
     const ethers = options?.dependencies?.ethers || ethersjs;
     const provider = options?.ethereum?.web3?.provider
