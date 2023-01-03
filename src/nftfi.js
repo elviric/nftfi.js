@@ -53,30 +53,28 @@ export default {
     const hasWeb3Provider = options?.ethereum?.web3?.provider;
     const hasProviderUrl = options?.ethereum?.provider?.url;
 
-    if (!hasWeb3Provider && !hasProviderUrl) {
-      throw 'Please provide a value for the ethereum.provider.url field in the options parameter.';
-    }
-    if (!hasWeb3Provider && !hasGnosisSafePks && !hasAccountPk) {
-      throw 'Please provide a value for the ethereum.account.privateKey field in the options parameter.';
-    }
-    if (!hasApiKey) {
-      throw 'Please provide a value for the api.key field in the options parameter.';
-    }
-    if (!hasGnosisSafeAddress && !hasAccountPk && !hasAccountAddress) {
-      throw 'Please provide a value for the ethereum.account.address field in the options parameter.';
-    }
-    if (
-      (hasGnosisSafePks && (hasWeb3Provider || hasAccountPk)) ||
-      (hasWeb3Provider && (hasGnosisSafePks || hasAccountPk)) ||
-      (hasAccountPk && (hasGnosisSafePks || hasWeb3Provider))
-    ) {
-      throw 'Please supply values for either account.privateKey, account.web3.provider, or account.multisig.';
-    }
+    // if (!hasWeb3Provider && !hasProviderUrl) {
+    //   throw 'Please provide a value for the ethereum.provider.url field in the options parameter.';
+    // }
+    // if (!hasWeb3Provider && !hasGnosisSafePks && !hasAccountPk) {
+    //   throw 'Please provide a value for the ethereum.account.privateKey field in the options parameter.';
+    // }
+    // if (!hasApiKey) {
+    //   throw 'Please provide a value for the api.key field in the options parameter.';
+    // }
+    // if (!hasGnosisSafeAddress && !hasAccountPk && !hasAccountAddress) {
+    //   throw 'Please provide a value for the ethereum.account.address field in the options parameter.';
+    // }
+    // if (
+    //   (hasGnosisSafePks && (hasWeb3Provider || hasAccountPk)) ||
+    //   (hasWeb3Provider && (hasGnosisSafePks || hasAccountPk)) ||
+    //   (hasAccountPk && (hasGnosisSafePks || hasWeb3Provider))
+    // ) {
+    //   throw 'Please supply values for either account.privateKey, account.web3.provider, or account.multisig.';
+    // }
 
     const ethers = options?.dependencies?.ethers || ethersjs;
-    const provider = options?.ethereum?.web3?.provider
-      ? new ethersjs.providers.Web3Provider(options?.ethereum?.web3?.provider)
-      : new ethersjs.providers.getDefaultProvider(options?.ethereum?.provider?.url);
+    const provider =  new ethersjs.providers.getDefaultProvider(options?.ethereum?.provider?.url);
     const network = await provider.getNetwork();
     const config = new Config({
       merge,
@@ -126,9 +124,10 @@ export default {
         account: options?.dependencies?.account || multisig
       });
     } else {
-      const pk = options?.ethereum?.account?.privateKey;
+      //const pk = options?.ethereum?.account?.privateKey;
       const address = options?.ethereum?.account?.address || ethersjs.utils.computeAddress(pk);
-      signer = !pk ? await provider.getSigner(address) : new ethersjs.Wallet(pk, provider);
+      //signer = !pk ? await provider.getSigner(address) : new ethersjs.Wallet(pk, provider);
+      signer = options?.dependencies?.signer;
       const eoa = new EOA({ address, signer, provider });
       account = new Account({ account: options?.dependencies?.account || eoa });
     }
