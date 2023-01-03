@@ -72,11 +72,11 @@ export default {
     // ) {
     //   throw 'Please supply values for either account.privateKey, account.web3.provider, or account.multisig.';
     // }
-
+    console.log(options?.ethereum?.provider?.url);
     const ethers = options?.dependencies?.ethers || ethersjs;
     const provider = options?.ethereum?.web3?.provider
       ? new ethersjs.providers.Web3Provider(options?.ethereum?.web3?.provider)
-      : new ethersjs.providers.getDefaultProvider(options?.ethereum?.provider?.url);
+      : new ethersjs.providers.JsonRpcProvider(options?.ethereum?.provider?.url);
     const network = await provider.getNetwork();
     const config = new Config({
       merge,
