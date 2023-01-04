@@ -29,21 +29,21 @@ class Auth {
       return this.#token;
     }
 
-    if (typeof global?.window?.localStorage !== 'undefined') {
-      const sdkToken = global.window.localStorage.getItem('sdkToken');
+    if (typeof window !== 'undefined') {
+      const sdkToken = window.localStorage.getItem('sdkToken');
       if (this._isTokenValid(sdkToken)) {
         this.#token = sdkToken;
         return this.#token;
       }
 
-      const dappToken = global?.window?.localStorage.getItem('jwtToken');
+      const dappToken = window?.localStorage.getItem('jwtToken');
       if (this._isTokenValid(dappToken)) {
-        global.window.localStorage.setItem('sdkToken', dappToken);
+        window.localStorage.setItem('sdkToken', dappToken);
         this.#token = dappToken;
         return this.#token;
       }
     }
-
+    
     // Request token
     const nonce = this.#utils.getNonce();
     const accountAddress = this.#account.getAuthAddress();
@@ -67,8 +67,8 @@ class Auth {
     });
     const token = result?.data?.result?.token;
     if (token) {
-      if (typeof global?.window?.localStorage !== 'undefined') {
-        global.window.localStorage.setItem('sdkToken', token);
+      if (typeof window?.localStorage !== 'undefined') {
+        window.localStorage.setItem('sdkToken', token);
       }
       this.#token = token;
     } else {
