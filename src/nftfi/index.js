@@ -7,6 +7,7 @@ class NFTfi {
   erc20;
   erc721;
   utils;
+  auth;
 
   constructor(options = {}) {
     this.config = options.config;
@@ -17,6 +18,7 @@ class NFTfi {
     this.erc20 = options.erc20;
     this.erc721 = options.erc721;
     this.utils = options.utils;
+    this.auth = options.auth;
   }
 }
 

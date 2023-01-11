@@ -163,7 +163,7 @@ export default {
     const offersValidator = new OffersValidator({ erc20, ethers, config, contractFactory });
     const offers = new Offers({ api, account, offersHelper, offersValidator, loans, config, result, error, helper });
     const erc721 = new Erc721({ config, contractFactory });
-    const nftfi = new NFTfi({ config, account, listings, offers, loans, erc20, erc721, utils });
+    const nftfi = new NFTfi({ config, account, listings, offers, loans, erc20, erc721, utils,auth });
 
     if (options?.logging?.verbose === true) {
       console.log('NFTfi SDK initialised.');
