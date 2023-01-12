@@ -38,7 +38,7 @@ class Loans {
     let response = await this.#api.get({
       uri: 'loans',
       params: {
-        accountAddress: this.#account.getAddress(),
+        accountAddress: options.filters.address?options.filters.address: this.#account.getAddress(),
         counterparty: options.filters.counterparty,
         status: options.filters.status
       }
